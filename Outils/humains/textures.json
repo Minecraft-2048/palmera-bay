@@ -1,0 +1,251 @@
+{
+ "peau:young_caucasian_male": {
+  "diffuse": "young_lightskinned_male_diffuse",
+  "moyenne": 0.4801
+ },
+ "yeux:brown": {
+  "diffuse": "brown_eye",
+  "moyenne": 0.3365
+ },
+ "sourcils:eyebrow001": {
+  "diffuse": "eyebrow001",
+  "moyenne": 0.0007
+ },
+ "cils:eyelashes01": {
+  "diffuse": "eyelashes01",
+  "moyenne": 0.0001
+ },
+ "cheveux:short02": {
+  "diffuse": "short02_diffuse",
+  "moyenne": 0.0481,
+  "normale": "short02_normal"
+ },
+ "vetement:male_casualsuit05": {
+  "diffuse": "male_casualsuit05_diffuse",
+  "moyenne": 0.0317,
+  "normale": "male_casualsuit05_normal"
+ },
+ "chaussures:shoes01": {
+  "diffuse": "shoes01_diffuse",
+  "moyenne": 0.0896,
+  "normale": "shoes01_normal"
+ },
+ "peau:young_caucasian_female": {
+  "diffuse": "young_lightskinned_female_diffuse",
+  "moyenne": 0.4133
+ },
+ "yeux:green": {
+  "diffuse": "green_eye",
+  "moyenne": 0.3413
+ },
+ "sourcils:eyebrow002": {
+  "diffuse": "eyebrow002",
+  "moyenne": 0.0011
+ },
+ "cils:eyelashes02": {
+  "diffuse": "eyelashes02",
+  "moyenne": 0.0
+ },
+ "cheveux:ponytail01": {
+  "diffuse": "ponytail01_diffuse",
+  "moyenne": 0.06
+ },
+ "vetement:male_worksuit01": {
+  "diffuse": "male_worksuit01_diffuse",
+  "moyenne": 0.1857,
+  "normale": "male_worksuit01_normal"
+ },
+ "chaussures:shoes04": {
+  "diffuse": "shoes04_diffuse",
+  "moyenne": 0.027,
+  "normale": "shoes04_normal"
+ },
+ "peau:old_african_female": {
+  "diffuse": "old_darkskinned_female_diffuse",
+  "moyenne": 0.0388
+ },
+ "sourcils:eyebrow004": {
+  "diffuse": "eyebrow004",
+  "moyenne": 0.001
+ },
+ "cheveux:short01": {
+  "diffuse": "short01_diffuse",
+  "moyenne": 0.0085
+ },
+ "vetement:male_casualsuit03": {
+  "diffuse": "male_casualsuit03_diffuse",
+  "moyenne": 0.0459,
+  "normale": "male_casualsuit03_normal"
+ },
+ "chaussures:shoes02": {
+  "diffuse": "shoes02_diffuse",
+  "moyenne": 0.088
+ },
+ "peau:young_asian_female": {
+  "diffuse": "young_lightskinned_female_diffuse3",
+  "moyenne": 0.4105
+ },
+ "sourcils:eyebrow005": {
+  "diffuse": "eyebrow005",
+  "moyenne": 0.0009
+ },
+ "cils:eyelashes03": {
+  "diffuse": "eyelashes03",
+  "moyenne": 0.0
+ },
+ "cheveux:bob01": {
+  "diffuse": "bob01_diffuse",
+  "moyenne": 0.0166
+ },
+ "vetement:female_elegantsuit01": {
+  "diffuse": "female_elegantsuit01_diffuse",
+  "moyenne": 0.053,
+  "normale": "female_elegantsuit01_normal"
+ },
+ "peau:young_african_female": {
+  "diffuse": "young_darkskinned_female_diffuse",
+  "moyenne": 0.0571
+ },
+ "sourcils:eyebrow006": {
+  "diffuse": "eyebrow006",
+  "moyenne": 0.0
+ },
+ "vetement:male_casualsuit01": {
+  "diffuse": "male_casualsuit01_diffuse",
+  "moyenne": 0.065,
+  "normale": "male_casualsuit01_normal"
+ },
+ "chaussures:shoes03": {
+  "diffuse": "shoes03_diffuse",
+  "moyenne": 0.0016
+ },
+ "peau:old_caucasian_male": {
+  "diffuse": "old_lightskinned_male_diffuse",
+  "moyenne": 0.5242
+ },
+ "yeux:grey": {
+  "diffuse": "grey_eye",
+  "moyenne": 0.3569
+ },
+ "sourcils:eyebrow007": {
+  "diffuse": "eyebrow007",
+  "moyenne": 0.0
+ },
+ "vetement:male_elegantsuit01": {
+  "diffuse": "male_elegantsuit01_diffuse",
+  "moyenne": 0.0206
+ },
+ "yeux:lightblue": {
+  "diffuse": "lightblue_eye",
+  "moyenne": 0.3555
+ },
+ "sourcils:eyebrow008": {
+  "diffuse": "eyebrow008",
+  "moyenne": 0.0006
+ },
+ "cheveux:short04": {
+  "diffuse": "short04_diffuse",
+  "moyenne": 0.0145
+ },
+ "peau:middleage_asian_female": {
+  "diffuse": "middleage_lightskinned_female_diffuse2",
+  "moyenne": 0.4594
+ },
+ "sourcils:eyebrow009": {
+  "diffuse": "eyebrow009",
+  "moyenne": 0.0043
+ },
+ "cils:eyelashes04": {
+  "diffuse": "eyelashes04",
+  "moyenne": 0.0
+ },
+ "cheveux:long01": {
+  "diffuse": "long01_diffuse",
+  "moyenne": 0.0196
+ },
+ "peau:middleage_caucasian_male": {
+  "diffuse": "middleage_lightskinned_male_diffuse",
+  "moyenne": 0.4199
+ },
+ "sourcils:eyebrow010": {
+  "diffuse": "eyebrow010",
+  "moyenne": 0.0001
+ },
+ "peau:young_asian_male": {
+  "diffuse": "young_lightskinned_male_diffuse3",
+  "moyenne": 0.3958
+ },
+ "sourcils:eyebrow011": {
+  "diffuse": "eyebrow011",
+  "moyenne": 0.0
+ },
+ "cheveux:short03": {
+  "diffuse": "short03_diffuse",
+  "moyenne": 0.0458
+ },
+ "vetement:male_casualsuit06": {
+  "diffuse": "male_casualsuit06_diffuse",
+  "moyenne": 0.4847,
+  "normale": "male_casualsuit06_normal"
+ },
+ "chaussures:shoes05": {
+  "diffuse": "shoes05_diffuse",
+  "moyenne": 0.0917
+ },
+ "peau:middleage_african_male": {
+  "diffuse": "middleage_darkskinned_male_diffuse",
+  "moyenne": 0.0603
+ },
+ "sourcils:eyebrow012": {
+  "diffuse": "eyebrow012",
+  "moyenne": 0.0001
+ },
+ "peau:young_african_male": {
+  "diffuse": "young_darkskinned_male_diffuse",
+  "moyenne": 0.0539
+ },
+ "cheveux:afro01": {
+  "diffuse": "afro_diffuse",
+  "moyenne": 0.0012
+ },
+ "peau:middleage_asian_male": {
+  "diffuse": "middleage_lightskinned_male_diffuse2",
+  "moyenne": 0.4378
+ },
+ "sourcils:eyebrow003": {
+  "diffuse": "eyebrow003",
+  "moyenne": 0.0007
+ },
+ "yeux:bluegreen": {
+  "diffuse": "bluegreen_eye",
+  "moyenne": 0.3599
+ },
+ "peau:young_caucasian_male2": {
+  "diffuse": "young_lightskinned_male_diffuse2",
+  "moyenne": 0.3949
+ },
+ "chaussures:shoes06": {
+  "diffuse": "shoes06_diffuse",
+  "moyenne": 0.0991
+ },
+ "peau:young_caucasian_female2": {
+  "diffuse": "young_lightskinned_female_diffuse2",
+  "moyenne": 0.3953
+ },
+ "yeux:blue": {
+  "diffuse": "blue_eye",
+  "moyenne": 0.3406
+ },
+ "cheveux:braid01": {
+  "diffuse": "braid01_diffuse",
+  "moyenne": 0.0079
+ },
+ "peau:old_caucasian_female": {
+  "diffuse": "old_lightskinned_female_diffuse",
+  "moyenne": 0.4801
+ },
+ "cheveux:bob02": {
+  "diffuse": "bob02_diffuse",
+  "moyenne": 0.3583
+ }
+}

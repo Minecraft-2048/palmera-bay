@@ -1,0 +1,254 @@
+{
+"personnages": {
+ "sam":     {"modele":"Sam","nom":"Sam","haut":[214,84,70],"bas":[28,34,52],"peau":[198,150,120],"cheveux":[30,20,14],"coiffure":1,"voix":"paul","hauteur":1.0},
+ "nina":    {"modele":"Nina","nom":"Nina","femme":true,"haut":[42,98,120],"bas":[40,40,46],"peau":[205,160,128],"cheveux":[64,28,18],"coiffure":2,"voix":"julie","hauteur":1.0},
+ "lou":     {"modele":"Lou","nom":"Lou","femme":true,"haut":[236,200,120],"bas":[120,70,60],"peau":[150,104,78],"cheveux":[205,205,200],"coiffure":3,"voix":"hortense","hauteur":0.88},
+ "ines":    {"modele":"Ines","nom":"Inès Kaplan","femme":true,"haut":[232,232,226],"bas":[34,44,70],"peau":[176,126,92],"cheveux":[20,14,12],"coiffure":2,"voix":"julie","hauteur":1.08},
+ "aya":     {"modele":"Aya","nom":"Aya Benali","femme":true,"haut":[28,46,86],"bas":[22,30,56],"peau":[168,118,84],"cheveux":[16,12,12],"coiffure":3,"voix":"hortense","hauteur":1.02},
+ "ferrand": {"modele":"Ferrand","nom":"Commissaire Ferrand","haut":[34,42,74],"bas":[26,30,52],"peau":[210,170,140],"cheveux":[150,150,150],"coiffure":4,"voix":"paul","hauteur":0.86},
+ "valmont": {"modele":"Valmont","nom":"Octave Valmont","haut":[226,222,210],"bas":[210,206,194],"peau":[214,176,146],"cheveux":[190,190,186],"coiffure":4,"voix":"paul","hauteur":0.8},
+ "carla":   {"modele":"Carla","nom":"Carla, la Murène","femme":true,"haut":[86,20,120],"bas":[18,18,22],"peau":[190,140,108],"cheveux":[12,10,12],"coiffure":3,"voix":"hortense","hauteur":0.94},
+ "bruno":   {"modele":"Bruno","nom":"Gros Bruno","haut":[16,70,74],"bas":[30,30,34],"peau":[196,150,116],"coiffure":0,"voix":"paul","hauteur":0.74},
+ "theo":    {"modele":"Theo","nom":"Théo","haut":[230,150,50],"bas":[60,64,74],"peau":[178,128,96],"cheveux":[110,70,30],"coiffure":1,"voix":"paul","hauteur":1.14},
+ "marius":  {"nom":"Marius (cassette)","voix":"paul","hauteur":0.9},
+ "garde":   {"modele":"Garde","nom":"Homme de main","haut":[16,70,74],"bas":[18,20,24],"peau":[170,126,96],"coiffure":4,"voix":"paul"}
+},
+"chapitres": [
+{"titre":"Prologue — Retour à la baie","etapes":[
+ {"type":"appel","consigne":"Monte dans la voiture rouge, sur le trottoir (touche F)","lignes":[
+  ["nina","Sam, c'est Nina. Tu es arrivé ? Dis-moi que tu es enfin à Palmera."],
+  ["nina","Papa t'a laissé sa vieille voiture rouge, elle t'attend près de la promenade. Viens au garage, j'ai besoin de toi."]]},
+ {"type":"placer","pnj":"nina","point":[-660,109]},
+ {"type":"placer","pnj":"bruno","point":[-648,109]},
+ {"type":"aller","consigne":"Rejoins le garage de Nina (repère doré sur la carte)","point":[-660,120],"rayon":12,"reprise":true},
+ {"type":"scene","pnj":"nina","lignes":[
+  ["nina","Six ans, Sam. Six ans sans une carte postale, et il aura fallu l'enterrement de mon père pour te revoir."],
+  ["sam","Je sais. Je suis désolé. Je n'ai appris pour Marius que la semaine dernière. Un accident, sur le port ?"],
+  ["nina","C'est ce que dit la police. Sa voiture dans l'eau, un soir de pluie. Mon père, qui connaissait chaque mètre de ce quai."],
+  ["sam","Tu n'y crois pas."],
+  ["nina","Je ne sais plus ce que je crois. Depuis qu'il est parti, ils viennent ici toutes les semaines. Regarde, en voilà un."]]},
+ {"type":"scene","pnj":"bruno","lignes":[
+  ["bruno","Tiens, la petite Orsini a de la visite. Tu lui diras, l'ami, que Monsieur Valmont a fait une offre très généreuse pour ce garage."],
+  ["sam","Et si elle n'a pas envie de vendre ?"],
+  ["bruno","Alors un garage, ça brûle vite. Il y a tellement d'huile, là-dedans. Allez, à la semaine prochaine, ma belle."]]},
+ {"type":"placer","pnj":"bruno","cacher":true},
+ {"type":"detruire","consigne":"Ils s'enfuient en voiture : percute-les jusqu'à ce qu'ils s'arrêtent","nombre":1,"vie":45,"reprise":true},
+ {"type":"appel","lignes":[["nina","Je t'ai vu faire depuis la route. Tu conduis toujours comme un fou. Reviens, il faut qu'on parle."]]},
+ {"type":"parler","consigne":"Retourne parler à Nina","pnj":"nina","point":[-660,109]},
+ {"type":"scene","pnj":"nina","argent":500,"lignes":[
+  ["nina","Merci. Ces types, ce sont les Murènes. Un gang du port qui travaille pour Octave Valmont, le promoteur."],
+  ["nina","Il veut raser tout le front de mer pour construire sa Marina Royale. Ceux qui refusent de vendre ont des ennuis. Mon père refusait."],
+  ["sam","Alors je reste. Le temps de comprendre ce qui lui est arrivé."],
+  ["nina","Tu es sérieux ? Tiens, cinq cents dollars pour te loger. Et papa enregistrait tout sur ses vieilles cassettes. Si tu en trouves en ville, écoute-les."]]}
+]},
+{"titre":"Chapitre 1 — Les Murènes","etapes":[
+ {"type":"placer","pnj":"nina","point":[-660,109]},
+ {"type":"parler","consigne":"Nina a du nouveau : passe au garage","pnj":"nina","point":[-660,109]},
+ {"type":"scene","pnj":"nina","lignes":[
+  ["nina","Le fourgon de Gros Bruno vient de partir du garage de la rue d'en face. Il transporte quelque chose pour Valmont chaque jeudi."],
+  ["nina","Suis-le. Pas trop près, il n'est pas si bête. Je veux savoir où il va."],
+  ["sam","Et s'il me voit ?"],
+  ["nina","Alors roule vite. C'est de famille."]]},
+ {"type":"suivre","consigne":"Suis le fourgon sans te faire voir ni le perdre","reprise":true,"vitesse":15,"route":[[-660,120],[-240,120],[-240,-240],[240,-240],[240,-480],[660,-480],[660,-600]]},
+ {"type":"appel","consigne":"Approche de l'Entrepôt 7","lignes":[
+  ["sam","Il s'arrête à l'Entrepôt 7, sur le port. Il y a des gardes partout."],
+  ["nina","Il doit y garder ses papiers. Trouve-les, à pied. Évite leur regard, reste derrière les conteneurs."]]},
+ {"type":"infiltrer","consigne":"À pied : atteins le fourgon sans te faire voir, puis fouille-le (E)","point":[690,-640],"rayon":5,"nombre":3,"reprise":true},
+ {"type":"appel","lignes":[
+  ["sam","Je tiens un registre. Des noms, des sommes. Toutes les ventes du front de mer."],
+  ["nina","Sors de là ! Va chez Lou, la paillote sur la plage. Elle connaissait papa mieux que personne."]]},
+ {"type":"semer","consigne":"On t'a repéré : sème les Murènes","nombre":2,"vie":70,"reprise":true}
+]},
+{"titre":"Chapitre 2 — Chez Lou","etapes":[
+ {"type":"placer","pnj":"lou","point":[-986,-120]},
+ {"type":"parler","consigne":"Va voir Lou, à sa paillote sur la plage","pnj":"lou","point":[-986,-120]},
+ {"type":"scene","pnj":"lou","heure":18.2,"lignes":[
+  ["lou","Toi, tu as les yeux de ton oncle. Assieds-toi, petit. Marius venait ici tous les soirs regarder le soleil tomber dans l'eau."],
+  ["sam","Lou, il a vraiment eu un accident ?"],
+  ["lou","Marius conduisait depuis cinquante ans et il ne buvait que de la limonade. Le soir de sa mort, il m'a dit : ce soir je leur apporte la preuve."],
+  ["sam","La preuve de quoi ?"],
+  ["lou","Que Valmont achète la police et que les Murènes font son sale travail. Il cachait tout sur des cassettes, un peu partout en ville, comme un vieux pirate."],
+  ["lou","Montre ton registre à la petite Kaplan, du journal. Elle est têtue. Ça te plaira."]]},
+ {"type":"placer","pnj":"ines","point":[120,-111]},
+ {"type":"parler","consigne":"Rencontre Inès Kaplan, devant L'Écho de la Baie","pnj":"ines","point":[120,-111]},
+ {"type":"scene","pnj":"ines","lignes":[
+  ["ines","Vous êtes le neveu de Marius Orsini ? Je l'ai attendu toute une nuit, le soir où il est mort. Il devait me donner un dossier."],
+  ["sam","J'ai ceci. Le registre de l'Entrepôt 7."],
+  ["ines","Mon Dieu. Il faut l'imprimer ce soir, avant que Valmont ne fasse pression sur mon patron. L'imprimerie est de l'autre côté de la ville."],
+  ["ines","Mais ils me surveillent. Je prends ma voiture, vous me couvrez. Si une Murène s'approche, foncez-lui dedans."]]},
+ {"type":"placer","pnj":"ines","cacher":true},
+ {"type":"proteger","consigne":"Protège la voiture jaune d'Inès : percute les Murènes qui l'attaquent","reprise":true,"vitesse":13,"vie":100,"nombre":2,"raison":"la voiture d'Inès a été arrêtée","route":[[120,-120],[120,240],[-240,240],[-240,480],[-600,480]]},
+ {"type":"appel","lignes":[
+  ["ines","On a réussi. Le registre est en sécurité, et je le fais vérifier par mes sources. Merci, Sam. Faites attention à vous."],
+  ["sam","Vous aussi. Les Murènes savent qui nous sommes, maintenant."]]}
+]},
+{"titre":"Chapitre 3 — Un vieil ami","etapes":[
+ {"type":"placer","pnj":"theo","point":[-420,-2]},
+ {"type":"appel","consigne":"Va au Parc des Palmiers","heure":21.0,"lignes":[
+  ["theo","Sam ? C'est Théo. Oui, ce Théo-là. On se retrouve au Parc des Palmiers ? J'ai des choses à te dire. Viens seul."]]},
+ {"type":"parler","consigne":"Retrouve Théo au Parc des Palmiers","pnj":"theo","point":[-420,-2]},
+ {"type":"scene","pnj":"theo","lignes":[
+  ["theo","Tu n'as pas changé. Moi si. Je conduis pour les Murènes, Sam. J'avais des dettes, ils les ont rachetées."],
+  ["sam","Tu travailles pour ceux qui ont tué mon oncle ?"],
+  ["theo","Je ne savais pas ! Je te jure. Je veux en sortir. Mais écoute-moi, il faut que tu partes d'ici, tout de suite."],
+  ["sam","Pourquoi ?"],
+  ["theo","Parce qu'on m'a obligé à t'appeler. Pardon. Fonce !"]]},
+ {"type":"placer","pnj":"theo","cacher":true},
+ {"type":"semer","consigne":"C'est un piège : sème les Murènes","nombre":3,"vie":70,"reprise":true},
+ {"type":"appel","lignes":[
+  ["nina","Sam, tu vas bien ? Théo, c'est toujours le même gamin qui a peur de son ombre. Mais il t'a prévenu. Ça compte, non ?"]]}
+]},
+{"titre":"Chapitre 4 — La course de minuit","etapes":[
+ {"type":"placer","pnj":"carla","point":[-60,951]},
+ {"type":"placer","pnj":"theo","point":[-54,951]},
+ {"type":"parler","consigne":"Les Murènes te lancent un défi : va au quai sud","pnj":"carla","point":[-60,951]},
+ {"type":"scene","pnj":"carla","heure":23.5,"lignes":[
+  ["carla","Alors c'est toi, le neveu qui démolit mes voitures. On m'appelle la Murène. J'étais pilote de rallye avant que Valmont ne m'offre mieux."],
+  ["sam","C'est toi qui as poussé Marius dans le port ?"],
+  ["carla","Quelle drôle de question. Je te propose un jeu. Une course. Si tu gagnes, Théo est libre et je te dis ce que Valmont garde dans sa villa."],
+  ["sam","Et si je perds ?"],
+  ["carla","Tu quittes la ville ce soir. Ou tu vas nager avec ton oncle."]]},
+ {"type":"placer","pnj":"carla","cacher":true},
+ {"type":"course","consigne":"Course de minuit : passe tous les points avant les Murènes","reprise":true,"rayon":14,"vitesse":34,"nombre":2,"route":[[-60,960],[600,960],[600,480],[120,480],[120,0],[-720,0],[-720,960],[-60,960]]},
+ {"type":"parler","consigne":"Va retrouver Théo sur le quai","pnj":"theo","point":[-54,951]},
+ {"type":"scene","pnj":"theo","lignes":[
+  ["theo","Tu l'as battue ! Personne n'avait jamais fait ça. Elle tient parole, je suis libre. Valmont garde son grand livre de comptes dans sa villa, aux Villas."],
+  ["theo","Sam, je t'en supplie. J'ai conduit le soir de la mort de Marius. Pas sa voiture, mais j'étais là. Si la police l'apprend, je suis fini."]],
+  "choix":[
+   {"texte":"Je te couvre. Disparais et ne reviens pas.","drapeau":"theo_couvert","lignes":[["sam","Marius t'aimait bien. Je ne dirai rien. Mais tu me revaudras ça."],["theo","Merci. Je ne l'oublierai pas."]]},
+   {"texte":"Tu vas tout raconter à la police.","drapeau":"theo_denonce","lignes":[["sam","Non, Théo. Tu étais là. Tu vas dire la vérité, même si ça coûte cher."],["theo","Tu as raison. Je n'ai plus la force de fuir."]]}
+  ]},
+ {"type":"placer","pnj":"theo","cacher":true}
+]},
+{"titre":"Chapitre 5 — Le commissaire","etapes":[
+ {"type":"placer","pnj":"ferrand","point":[60,231]},
+ {"type":"placer","pnj":"aya","point":[66,231]},
+ {"type":"parler","consigne":"La police te convoque au commissariat","pnj":"ferrand","point":[60,231]},
+ {"type":"scene","pnj":"ferrand","heure":10.0,"lignes":[
+  ["ferrand","Monsieur Orsini. Vos courses de nuit font du bruit. Plusieurs voitures détruites, un entrepôt cambriolé. Je pourrais vous garder ici dix ans."],
+  ["sam","Je peux vous montrer qui détruit vraiment cette ville."],
+  ["ferrand","Je sais parfaitement qui vous êtes et ce que vous cherchez. Un conseil d'ami : votre oncle aussi posait trop de questions."]]},
+ {"type":"scene","pnj":"aya","lignes":[
+  ["aya","Lieutenante Benali. Ne dites rien et écoutez-moi. Ferrand vient d'ordonner votre arrestation pour le faire taire. Vous avez trente secondes."],
+  ["sam","Pourquoi m'aidez-vous ?"],
+  ["aya","Parce que le dossier de Marius a disparu de nos archives. Allez chez Peinture Express, changez de couleur. Je vous contacterai."]]},
+ {"type":"placer","pnj":"ferrand","cacher":true},
+ {"type":"placer","pnj":"aya","cacher":true},
+ {"type":"recherche","niveau":4},
+ {"type":"aller","consigne":"Toute la police te cherche : file à Peinture Express","reprise":true,"point":[660,240],"rayon":12,"temps":120,"raison":"la police t'a rattrapé"},
+ {"type":"recherche","niveau":0},
+ {"type":"appel","lignes":[
+  ["aya","Bien joué, vous êtes repeint et oublié pour quelques heures. Il me faut une vraie preuve contre Ferrand, signée de la main de Valmont."],
+  ["aya","Si le grand livre existe, il est dans sa villa. Je ne peux pas y entrer sans mandat. Vous, si."]]}
+]},
+{"titre":"Chapitre 6 — La villa Valmont","etapes":[
+ {"type":"aller","consigne":"Rends-toi discrètement aux Villas","point":[240,660],"rayon":16,"heure":20.2},
+ {"type":"appel","lignes":[
+  ["nina","Tu es devant ? Papa disait que Valmont cachait tout dans la cabane de sa piscine. Il ne fait confiance à aucun coffre."]]},
+ {"type":"infiltrer","consigne":"À pied : atteins le jardin de la villa sans te faire voir, puis fouille (E)","point":[300,660],"rayon":5,"nombre":4,"reprise":true},
+ {"type":"appel","lignes":[
+  ["sam","Je l'ai. Le grand livre de Valmont, avec les paiements versés à Ferrand. Et une page sur Marius. Nina, ils savaient qu'il allait au port ce soir-là."],
+  ["nina","Rentre. Rentre tout de suite. Il y a de la fumée dehors, Sam. Il y a des voitures devant le garage."]]}
+]},
+{"titre":"Chapitre 7 — Le feu au garage","etapes":[
+ {"type":"placer","pnj":"nina","point":[-660,109]},
+ {"type":"parler","consigne":"Fonce au garage de Nina !","pnj":"nina","point":[-660,109]},
+ {"type":"scene","pnj":"nina","heure":21.5,"lignes":[
+  ["sam","Nina ! Nina, regarde-moi !"],
+  ["nina","Ils ont tout cassé. Bruno. La Murène... Elle a dit que c'était un dernier avertissement. J'ai mal, Sam."],
+  ["sam","Je t'emmène. Tiens bon."]]},
+ {"type":"placer","pnj":"nina","cacher":true},
+ {"type":"aller","consigne":"Conduis Nina à l'hôpital, vite","reprise":true,"point":[540,-120],"rayon":12,"temps":75,"raison":"tu n'es pas arrivé à temps"},
+ {"type":"placer","pnj":"nina","point":[540,-111]},
+ {"type":"scene","pnj":"nina","lignes":[
+  ["nina","Le médecin dit que ça ira. Quelques côtes et une belle bosse. Je ne suis pas facile à casser."],
+  ["sam","C'est ma faute. Si je n'étais pas revenu..."],
+  ["nina","Si tu n'étais pas revenu, ils auraient gagné. Va la chercher, Sam. Finis ce que papa a commencé."]]}
+]},
+{"titre":"Chapitre 8 — La Murène","etapes":[
+ {"type":"appel","consigne":"Attends d'avoir des nouvelles de la Murène","heure":22.5,"pluie":1.0,"lignes":[
+  ["ines","Sam, une source m'envoie un message. La Murène quitte la ville cette nuit, en voiture, par le centre. C'est maintenant ou jamais."],
+  ["sam","Je m'en occupe."]]},
+ {"type":"appel","si":"theo_couvert","lignes":[
+  ["theo","C'est moi qui ai prévenu Inès. Je t'avais dit que je te revaudrais ça. Sa voiture a un point faible : elle tient mal les chocs sur le côté."]]},
+ {"type":"detruire","consigne":"Arrête la Murène : percute sa voiture violette jusqu'à ce qu'elle cale","reprise":true,"nombre":3,"vie":260,"chef":true},
+ {"type":"placer","pnj":"carla","point":[-100,-300]},
+ {"type":"scene","pnj":"carla","lignes":[
+  ["carla","Bien conduit, petit. Marius conduisait bien, lui aussi. Je voulais juste lui faire peur, tu sais. C'est Ferrand qui a tout arrangé ensuite."],
+  ["sam","Et Valmont ?"],
+  ["carla","Son yacht quitte le port à minuit, avec tout l'argent de la Marina. Il ne reviendra jamais. Alors, qu'est-ce que tu fais de moi ?"]],
+  "choix":[
+   {"texte":"Tu diras tout à la lieutenante Benali.","drapeau":"carla_arretee","lignes":[["sam","Aya t'attend. Tu répéteras tout ça devant un juge."],["carla","Une justice honnête dans cette ville ? Je veux voir ça."]]},
+   {"texte":"Disparais. Je n'ai pas le temps.","drapeau":"carla_libre","lignes":[["sam","Va-t'en. Je ne veux plus jamais voir ta voiture ici."],["carla","Tu es plus malin que je ne pensais. Ou plus bête."]]}
+  ]},
+ {"type":"placer","pnj":"carla","cacher":true}
+]},
+{"titre":"Chapitre 9 — Marée basse","etapes":[
+ {"type":"appel","consigne":"Fonce au port avant minuit !","heure":23.3,"pluie":1.0,"lignes":[
+  ["aya","Sam, Ferrand a coupé mes accès. Je suis seule. Le yacht de Valmont est à quai, secteur nord. Faites vite."]]},
+ {"type":"placer","pnj":"valmont","point":[300,-975]},
+ {"type":"placer","pnj":"ferrand","point":[306,-975]},
+ {"type":"semer","consigne":"Force le barrage et atteins le quai nord","reprise":true,"nombre":4,"vie":80,"point":[300,-972],"rayon":14,"temps":110,"raison":"le yacht est parti sans toi"},
+ {"type":"scene","pnj":"valmont","lignes":[
+  ["valmont","Le neveu. Vous êtes tenace, comme lui. Vous avez mon grand livre, je crois. Il vaut bien plus que vous ne l'imaginez."],
+  ["sam","Il vaut la vie de Marius. Il vaut le garage de Nina."],
+  ["valmont","Votre oncle a refusé mon chèque. Il était fier. Soyez plus intelligent : deux millions, ce soir, et vous oubliez tout. La Marina se fera, avec ou sans vous."]]},
+ {"type":"placer","pnj":"aya","point":[294,-975]},
+ {"type":"scene","pnj":"aya","si":"theo_denonce","lignes":[
+  ["aya","Lâchez ce livre, Valmont n'est plus le seul à parler. Théo Rossi a tout raconté ce matin. Le soir du port, Ferrand était là."],
+  ["ferrand","Ce gamin ment. Sam, donnez-moi ça, c'est un ordre."]]},
+ {"type":"scene","pnj":"aya","sinon":"theo_denonce","lignes":[
+  ["aya","Sam ! Ne faites rien. Il me faut ce livre pour arrêter Ferrand. Sans lui, je n'ai que ma parole contre la sienne."],
+  ["ferrand","Votre parole ne vaut plus rien, lieutenante. Monsieur Orsini, donnez-moi ça, c'est un ordre."]]},
+ {"type":"scene","pnj":"valmont","lignes":[
+  ["valmont","Alors, jeune homme ? La marée ne vous attendra pas."]],
+  "choix":[
+   {"texte":"Donner le grand livre à la lieutenante Aya","drapeau":"fin_justice","lignes":[["sam","C'est fini, Valmont. Lieutenante, il est à vous."],["aya","Octave Valmont, commissaire Ferrand, vous êtes en état d'arrestation."]]},
+   {"texte":"Envoyer tout à Inès pour le publier","drapeau":"fin_scandale","lignes":[["sam","Trop tard. Inès a déjà les photos de chaque page. Demain, toute la ville saura."],["valmont","Vous venez de vous faire un ennemi à vie."]]},
+   {"texte":"Prendre les deux millions","drapeau":"fin_argent","argent":2000000,"lignes":[["sam","Deux millions. Et je n'ai jamais vu ce livre."],["aya","Je vous croyais différent. Marius aurait honte."]]}
+  ]},
+ {"type":"placer","pnj":"valmont","cacher":true},
+ {"type":"placer","pnj":"ferrand","cacher":true},
+ {"type":"placer","pnj":"aya","cacher":true},
+ {"type":"placer","pnj":"nina","point":[-660,109]},
+ {"type":"parler","consigne":"Retourne voir Nina au garage","pnj":"nina","point":[-660,109]},
+ {"type":"scene","pnj":"nina","si":"fin_justice","pluie":0.0,"heure":17.4,"lignes":[
+  ["nina","Valmont et Ferrand en prison, la Marina annulée. Les voisins ont repeint le garage. Papa aurait pleuré, et il aurait nié."],
+  ["sam","Je crois que je vais rester un peu."],
+  ["nina","Il y a une clé pour toi sur le comptoir. Bienvenue à la maison, Sam."]]},
+ {"type":"fin","si":"fin_justice","consigne":"La justice de Palmera Bay","argent":5000},
+ {"type":"scene","pnj":"nina","si":"fin_scandale","pluie":0.0,"heure":17.4,"lignes":[
+  ["nina","Tous les journaux du pays en parlent. Valmont a fui à l'étranger, mais il a tout perdu. Personne ne construira rien sur ce front de mer."],
+  ["sam","Il court toujours, Nina."],
+  ["nina","Peut-être. Mais la ville, elle, sait la vérité sur papa. Reste. On a un garage à faire tourner."]]},
+ {"type":"fin","si":"fin_scandale","consigne":"La vérité en première page","argent":3000},
+ {"type":"scene","pnj":"nina","si":"fin_argent","pluie":0.0,"heure":17.4,"lignes":[
+  ["nina","Les bulldozers arrivent lundi. On m'a dit pour l'argent, Sam. Je ne veux pas savoir combien."],
+  ["sam","Nina, je peux t'aider, on peut partir, on..."],
+  ["nina","Rends-moi la clé de la voiture de mon père. Et ne reviens plus."]]},
+ {"type":"fin","si":"fin_argent","consigne":"Le prix de la baie","argent":0}
+]}
+],
+"cassettes": [
+ "Cassette une. Marius Orsini, au garage. Si tu écoutes ça, c'est que tu cherches. Je commence par le début : ce matin, un homme en costume blanc m'a proposé de racheter le garage.",
+ "Valmont revient avec un chiffre plus gros. Je lui ai offert un café et je lui ai montré la porte. Il a souri. Je n'aime pas ce sourire.",
+ "Trois voisins du front de mer ont vendu cette semaine. Chacun avait eu un incendie, une vitrine cassée, ou une voiture volée. Le hasard a bon dos.",
+ "J'ai suivi un fourgon jusqu'à l'Entrepôt 7. Il y a là-bas plus de monde que de marchandises. Je note les plaques.",
+ "Nina me dit que je deviens paranoïaque. Peut-être. Mais je préfère un vieux fou vivant à un vieux sage dans le port.",
+ "Le petit Théo est venu faire réviser sa voiture. Il a peur, ce gamin. Il a des dettes, et je connais ceux à qui il les doit.",
+ "J'ai porté plainte au commissariat. Ferrand m'a remercié et il a rangé la plainte dans un tiroir. Le lendemain, on a fouillé le garage.",
+ "Une lieutenante, Benali, m'a demandé pourquoi ma plainte n'existait plus. Celle-là n'est pas comme les autres. Il faudra la mettre au courant.",
+ "Lou dit que je ne devrais pas sortir seul le soir. Lou a toujours raison, c'est ce qui la rend insupportable. Je l'aime beaucoup.",
+ "La Marina Royale, c'est trois tours et un port privé. Ils veulent chasser tout le monde de la plage. Il paraît que ça s'appelle le progrès.",
+ "J'ai trouvé comment ils se paient. Tout passe par le grand livre de Valmont. Il ne fait confiance à personne, alors il écrit tout de sa main.",
+ "Ce vieux renard cache le livre dans la cabane de sa piscine. Un homme qui se méfie des coffres. Je le comprends.",
+ "Sam, si un jour tu entends ça : je ne t'en ai jamais voulu d'être parti. Moi aussi, à ton âge, j'ai voulu voir ailleurs.",
+ "Les Murènes rôdent autour du garage. La Carla, celle qu'ils appellent la Murène, conduit mieux que moi. Ça me fait de la peine de le dire.",
+ "J'ai vu Inès Kaplan, la journaliste. Elle est jeune et elle n'a peur de rien. Je vais lui donner tout le dossier. Ça fera du bruit.",
+ "J'ai caché des copies un peu partout. Dans les parcs, sur les trottoirs. Personne ne ramasse plus de vieilles cassettes de nos jours.",
+ "Nina, si tu trouves celle-ci : le moteur de la rouge ne doit jamais tourner sans huile. Et toi non plus, tu ne dois pas tourner sans manger.",
+ "Demain soir, je vais au port. Quelqu'un veut me vendre la dernière page du dossier. C'est sûrement un piège, mais il faut bien en finir.",
+ "J'ai mis mon nom sur le testament : le garage est à Nina et à Sam, à parts égales. Ne vendez jamais. Promettez-moi.",
+ "Dernière cassette. Si tu les as toutes, tu sais tout. Alors maintenant, regarde le soleil se coucher sur la baie, et vis. C'est tout ce que je voulais pour vous."
+]
+}

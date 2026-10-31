@@ -1,0 +1,57 @@
+PALMERA BAY
+Jeu en monde ouvert créé avec Unreal Engine 5.8 : une ville côtière imaginaire, au coucher du soleil.
+
+LANCER LE JEU
+Double-clique sur PalmeraBay.exe (ou sur « Jouer à Palmera Bay.bat »).
+Le premier lancement est plus lent : le jeu prépare ses shaders. Le disque E: doit rester branché.
+
+COMMANDES
+Z Q S D ou flèches : se déplacer, conduire
+Souris : regarder autour de soi. Au volant, la caméra fait le tour complet de la voiture (360°)
+V : replacer la caméra derrière la voiture
+Maj : courir
+Espace : sauter, frein à main (c'est lui qui fait déraper, quand tu le décides)
+F : monter dans une voiture ou en descendre
+E : parler, fouiller, réparer, repeindre, lancer un petit boulot sur un point doré
+Entrée, Espace ou E : passer une réplique
+Flèches ou Z / S : choisir une réponse
+H : klaxon
+C : changer de radio (3 stations)
+L : phares
+R : remettre la voiture sur ses roues
+M ou Tab : carte de la ville
+Échap ou P : menu (graphismes, journal, carte, sauvegarde)
+F1 : aide
+La manette est aussi prise en charge.
+
+L'HISTOIRE
+Six ans après avoir quitté Palmera Bay, Sam revient pour l'enterrement de Marius, le père de Nina.
+La police parle d'un accident. Nina n'y croit pas : le gang des Murènes rôde autour de son garage,
+pour le compte d'Octave Valmont, un promoteur qui veut raser le front de mer.
+Un prologue et 9 chapitres : filatures, course de nuit, villa à fouiller, des choix qui comptent et 3 fins.
+L'objectif est toujours écrit à l'écran, et le Journal du menu résume où tu en es.
+Si tu échoues, l'étape reprend. La partie se sauvegarde à chaque chapitre.
+
+CE QU'IL Y A DANS LA VILLE
+Le Front de mer et ses hôtels art déco, la Plage de l'Ouest, le Centre-ville et ses tours, la Vieille ville,
+le Parc des Palmiers, le Port et ses conteneurs, Les Villas et leurs piscines.
+Circulation avec feux tricolores, passants, police, jour et nuit, pluie, 5 tremplins.
+20 cassettes de Marius à trouver : chacune se fait entendre avec sa voix et raconte une partie du passé.
+
+PETITS BOULOTS
+Les points dorés de la carte : Course du coucher de soleil, Livraison fragile, La grande évasion, Taxi de nuit.
+
+GARAGES
+Sur la voiture, une barre montre son état. Au garage, E répare. À Peinture Express, E repeint pour 300 $
+et efface la recherche de la police.
+
+RECHERCHE DE POLICE
+Percuter des voitures fait monter les étoiles. Va à l'abri des regards pour les faire baisser.
+Si la police t'arrête, tu paies une amende. Si tu tombes à l'eau, on te repêche contre 150 $.
+
+SI LE JEU RAME
+Échap, puis « Graphismes » : Bas, Moyen, Élevé ou Épique. Élevé est le bon choix sur ton PC.
+
+CRÉDITS
+Personnages créés avec MakeHuman (MPFB pour Blender) et son pack d'assets libres CC0.
+Ville, voitures, sons, textures et histoire générés spécialement pour ce jeu.

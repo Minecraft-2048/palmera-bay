@@ -1,0 +1,22 @@
+# Fichiers produits par le moteur et la compilation
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+.vs/
+*.sln
+*.suo
+*.opensdf
+*.sdf
+
+# Le contenu Unreal n'est pas publié : tout ce qui est original se régénère avec Outils/,
+# et les modèles fournis par Epic (mannequin, voitures de démonstration) n'ont pas le droit d'être redistribués ainsi.
+Content/*
+!Content/Histoire/
+Art/
+Build/*
+!Build/Windows/
+Build/Windows/*
+!Build/Windows/Application.ico
+!Build/Splash/
+__pycache__/
