@@ -37,6 +37,7 @@ private:
 	void Aide(FSlateWindowElementList& L, int32 C, const FGeometry& G, FVector2D Ecran) const;
 	void Recit(FSlateWindowElementList& L, int32 C, const FGeometry& G, FVector2D Ecran) const;
 	void Journal(FSlateWindowElementList& L, int32 C, const FGeometry& G, FVector2D Ecran) const;
+	void AfficherCourse(FSlateWindowElementList& L, int32 C, const FGeometry& G, FVector2D Ecran, const class APalmeraCourse* Course) const;
 
 	TWeakObjectPtr<APalmeraJoueur> Joueur;
 };

@@ -6,11 +6,16 @@
 #include "Misc/CommandLine.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Parse.h"
+#include "Engine/Engine.h"
+#include "Engine/GameViewportClient.h"
 #include "PalmeraConfig.h"
+#include "PalmeraCourse.h"
+#include "Widgets/SWindow.h"
 #include "PalmeraEffets.h"
 #include "PalmeraHeros.h"
 #include "PalmeraHistoire.h"
 #include "PalmeraJoueur.h"
+#include "PalmeraLieux.h"
 #include "PalmeraMonde.h"
 #include "PalmeraPartie.h"
 #include "PalmeraPNJ.h"
@@ -35,6 +40,23 @@ void APalmeraGameMode::BeginPlay()
 	Monde->SpawnActor<APalmeraMonde>();
 	Monde->SpawnActor<APalmeraVille>();
 
+	// Palmera Racing : la même ville, sans histoire ni circulation
+	if (FParse::Param(FCommandLine::Get(), TEXT("course")))
+	{
+		if (GEngine->GameViewport && GEngine->GameViewport->GetWindow().IsValid())
+		{
+			GEngine->GameViewport->GetWindow()->SetTitle(FText::FromString(TEXT("Palmera Racing")));
+		}
+		Monde->SpawnActor<APalmeraSons>();
+		Monde->SpawnActor<APalmeraEffets>();
+		Monde->SpawnActor<APalmeraCourse>();
+		if (APalmeraPhotographe::EstDemande())
+		{
+			Monde->SpawnActor<APalmeraPhotographe>();
+		}
+		return;
+	}
+
 	// Le joueur commence sur la promenade, une voiture l'attend en bordure de rue
 	const FVector Depart = Palmera::EnMetres(Palmera::BordOuest - 13.5, 41.0, 1.4);
 	APalmeraHeros* Heros = Monde->SpawnActor<APalmeraHeros>(Depart, FRotator(0.0, 0.0, 0.0));
@@ -57,6 +79,7 @@ void APalmeraGameMode::BeginPlay()
 	Monde->SpawnActor<APalmeraPietons>();
 	Monde->SpawnActor<APalmeraHistoire>();
 	Monde->SpawnActor<APalmeraEffets>();
+	Monde->SpawnActor<APalmeraLieux>();
 
 	// Photo de contrôle : tout le casting aligné sur le trottoir
 	if (FParse::Param(FCommandLine::Get(), TEXT("casting")))

@@ -64,6 +64,8 @@ public:
 
 	// Consignes du conducteur, de -1 à 1.
 	void Commander(double Gaz, double Volant, bool bFrein);
+	// Angle des roues que les pneus peuvent tenir à la vitesse actuelle, en degrés.
+	double BraquageMax() const;
 
 	// Vrai : les forces des roues s'appliquent. Faux : la voiture est déplacée à la main, sans physique.
 	void ActiverPhysique(bool bActif);

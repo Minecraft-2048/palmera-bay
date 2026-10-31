@@ -40,6 +40,11 @@ public:
 	void DescendrePourTest() { if (Voiture) { Descendre(); } }
 	void Noter(const FString& Ligne) const;
 
+	// Jeu de course : le joueur commence directement au volant, commandes gelées jusqu'au départ.
+	void PrendreVoiture(APalmeraVoiture* NouvelleVoiture);
+	void LacherVoiture();
+	bool bCommandesGelees = false;
+
 private:
 	void CommandesAPied(float Dt);
 	void CommandesAuVolant(float Dt);

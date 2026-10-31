@@ -89,7 +89,7 @@ def peint():
     g = Graphe("M_Peint", nanite=True, instances=True)
     couleur = g.n(unreal.MaterialExpressionVertexColor)
     k = g.custom("float n = frac(sin(dot(floor(P.xy * 40.0), float2(12.9898, 78.233))) * 43758.5453);\nreturn C * (0.96 + 0.08 * n);",
-                 {"C": (couleur, "RGB"), "P": g.monde()}, "float3", None, "Peint")
+                 {"C": couleur, "P": g.monde()}, "float3", None, "Peint")
     g.sortie(k, MP.MP_BASE_COLOR)
     g.sortie(g.constante(0.55), MP.MP_ROUGHNESS)
     return g.fin()
@@ -100,7 +100,7 @@ def lumineux():
     g = Graphe("M_Lumineux", nanite=True, instances=True)
     g.m.set_editor_property("shading_model", unreal.MaterialShadingModel.MSM_UNLIT)
     couleur = g.n(unreal.MaterialExpressionVertexColor)
-    k = g.custom("return C * 14.0;", {"C": (couleur, "RGB")}, "float3", None, "Lumineux")
+    k = g.custom("return C * 14.0;", {"C": couleur}, "float3", None, "Lumineux")
     g.sortie(k, MP.MP_EMISSIVE_COLOR)
     return g.fin()
 

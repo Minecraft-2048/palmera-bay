@@ -12,7 +12,7 @@ V : replacer la caméra derrière la voiture
 Maj : courir
 Espace : sauter, frein à main (c'est lui qui fait déraper, quand tu le décides)
 F : monter dans une voiture ou en descendre
-E : parler, fouiller, réparer, repeindre, lancer un petit boulot sur un point doré
+E : parler, fouiller, entrer dans un bâtiment, réparer, repeindre, lancer un petit boulot
 Entrée, Espace ou E : passer une réplique
 Flèches ou Z / S : choisir une réponse
 H : klaxon
@@ -37,6 +37,16 @@ Le Front de mer et ses hôtels art déco, la Plage de l'Ouest, le Centre-ville e
 le Parc des Palmiers, le Port et ses conteneurs, Les Villas et leurs piscines.
 Circulation avec feux tricolores, passants, police, jour et nuit, pluie, 5 tremplins.
 20 cassettes de Marius à trouver : chacune se fait entendre avec sa voix et raconte une partie du passé.
+
+LIEUX OÙ ENTRER
+Huit bâtiments s'ouvrent : approche-toi de leur porte à pied et appuie sur E.
+Ciné Palmera, Arcade 88, Pizzeria Luna, Musée de la Baie, Club Atlas, Mairie, Hôtel des Pins et Bibliothèque.
+À l'intérieur, parle aux habitants : certains savent des choses sur Valmont. On ne peut pas y entrer avec la police aux trousses.
+
+PALMERA RACING
+Le jeu de course se lance avec « Palmera Racing.exe », à côté de PalmeraBay.exe.
+4 circuits dans la ville contre 5 pilotes, de 1 à 9 tours, record gardé pour chaque circuit.
+Pendant la course, R te remet sur la piste si tu sors de la route.
 
 PETITS BOULOTS
 Les points dorés de la carte : Course du coucher de soleil, Livraison fragile, La grande évasion, Taxi de nuit.

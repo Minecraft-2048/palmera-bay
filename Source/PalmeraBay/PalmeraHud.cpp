@@ -7,8 +7,10 @@
 #include "Rendering/SlateRenderer.h"
 #include "Styling/CoreStyle.h"
 #include "PalmeraConfig.h"
+#include "PalmeraCourse.h"
 #include "PalmeraHistoire.h"
 #include "PalmeraJoueur.h"
+#include "PalmeraLieux.h"
 #include "PalmeraMonde.h"
 #include "PalmeraPartie.h"
 #include "PalmeraPolice.h"
@@ -193,6 +195,30 @@ void SPalmeraHud::Plan(FSlateWindowElementList& L, int32 C, const FGeometry& G, 
 		}
 	}
 
+	if (const APalmeraCourse* Course = Joueur.IsValid() ? APalmeraCourse::Lire(Joueur.Get()) : nullptr)
+	{
+		const TArray<FVector2D>& Trace = Course->LireTrace();
+		TArray<FVector2f> Ligne;
+		for (int32 I = 0; I < Trace.Num(); I += 6)
+		{
+			Ligne.Add(Ecran(Trace[I].X, Trace[I].Y));
+		}
+		if (Ligne.Num() > 1)
+		{
+			const FVector2f Premier = Ligne[0];
+			Ligne.Add(Premier);
+			FSlateDrawElement::MakeLines(L, C + 6, G.ToPaintGeometry(), Ligne, ESlateDrawEffect::None, Or, true, 3.0f);
+		}
+		for (const FConcurrent* Rival : Course->Classement())
+		{
+			if (Rival != Course->Joueur() && Rival->Voiture)
+			{
+				const FVector P = Rival->Voiture->GetActorLocation() / Metre;
+				Pastille(FVector2D(P.X, P.Y), 5.0, FLinearColor(Rival->Couleur.R, Rival->Couleur.G, Rival->Couleur.B, 1.f), C + 7);
+			}
+		}
+	}
+
 	L.PopClip();
 
 	// Flèche du joueur
@@ -214,12 +240,16 @@ void SPalmeraHud::Menu(FSlateWindowElementList& L, int32 C, const FGeometry& G, 
 	const FVector2D Taille(520, 490);
 	const FVector2D P = (Ecran - Taille) * 0.5;
 	Boite(L, C + 1, G, P, Taille, FLinearColor(0.02f, 0.03f, 0.05f, 0.94f), 16.f);
-	Texte(L, C + 2, G, TEXT("PALMERA BAY"), FVector2D(Ecran.X * 0.5, P.Y + 26), 30, Corail, 0.5);
+	const bool bCourse = Joueur.IsValid() && APalmeraCourse::Lire(Joueur.Get()) != nullptr;
+	Texte(L, C + 2, G, bCourse ? TEXT("PALMERA RACING") : TEXT("PALMERA BAY"), FVector2D(Ecran.X * 0.5, P.Y + 26), 30, Corail, 0.5);
 	static const TCHAR* Noms[] = { TEXT("Bas"), TEXT("Moyen"), TEXT("Élevé"), TEXT("Épique") };
-	const FString Choix[] = {
-		TEXT("Reprendre"), FString::Printf(TEXT("Graphismes : %s"), Noms[FMath::Clamp(Qualite, 0, 3)]), TEXT("Journal de l'histoire"), TEXT("Carte de la ville"), TEXT("Sauvegarder"), TEXT("Quitter le jeu")
-	};
-	for (int32 I = 0; I < 6; I++)
+	TArray<FString> Choix = { TEXT("Reprendre"), FString::Printf(TEXT("Graphismes : %s"), Noms[FMath::Clamp(Qualite, 0, 3)]) };
+	if (!bCourse)
+	{
+		Choix.Append({ TEXT("Journal de l'histoire"), TEXT("Carte de la ville"), TEXT("Sauvegarder") });
+	}
+	Choix.Add(TEXT("Quitter le jeu"));
+	for (int32 I = 0; I < Choix.Num(); I++)
 	{
 		const double Y = P.Y + 100 + I * 54;
 		if (I == ChoixMenu)
@@ -422,6 +452,86 @@ void SPalmeraHud::Aide(FSlateWindowElementList& L, int32 C, const FGeometry& G, 
 	Texte(L, C + 1, G, TEXT("Appuie sur Entrée pour jouer"), FVector2D(Ecran.X * 0.5, P.Y + Taille.Y - 40), 15, Turquoise, 0.5);
 }
 
+void SPalmeraHud::AfficherCourse(FSlateWindowElementList& L, int32 C, const FGeometry& G, FVector2D Ecran, const APalmeraCourse* Course) const
+{
+	const auto Temps = [](double T)
+	{
+		if (T < 0.0)
+		{
+			return FString(TEXT("--"));
+		}
+		const int32 M = FMath::FloorToInt(T / 60.0);
+		return FString::Printf(TEXT("%d:%05.2f"), M, T - M * 60.0);
+	};
+	const FLinearColor Gris(0.7f, 0.72f, 0.76f, 1.f);
+	const FCircuit& Circuit = Course->Circuits()[Course->ChoixCircuit];
+
+	if (Course->Etat == EEtatCourse::Menu)
+	{
+		const FVector2D Taille(640, 430);
+		const FVector2D P = (Ecran - Taille) * 0.5;
+		Boite(L, C, G, P, Taille, FLinearColor(0.02f, 0.03f, 0.05f, 0.9f), 16.f);
+		Texte(L, C + 2, G, TEXT("PALMERA RACING"), FVector2D(Ecran.X * 0.5, P.Y + 26), 32, Corail, 0.5);
+		const FString Lignes[] = {
+			FString::Printf(TEXT("Circuit :  < %s >"), *Circuit.Nom),
+			FString::Printf(TEXT("Voiture :  < %s >"), *Course->NomVoiture()),
+			FString::Printf(TEXT("Tours :  < %d >"), Course->ToursChoisis)
+		};
+		for (int32 I = 0; I < 3; I++)
+		{
+			const double Y = P.Y + 106 + I * 60;
+			if (I == Course->ChoixLigne)
+			{
+				Boite(L, C + 1, G, FVector2D(P.X + 40, Y - 8), FVector2D(Taille.X - 80, 52), Corail * FLinearColor(1, 1, 1, 0.92f), 10.f);
+			}
+			Texte(L, C + 3, G, Lignes[I], FVector2D(Ecran.X * 0.5, Y + 4), 18, I == Course->ChoixLigne ? FLinearColor(0.02f, 0.02f, 0.04f, 1.f) : Blanc, 0.5);
+		}
+		Texte(L, C + 2, G, FString::Printf(TEXT("Record du circuit : %s"), *Temps(Course->Record())), FVector2D(Ecran.X * 0.5, P.Y + 300), 14, Or, 0.5);
+		Texte(L, C + 2, G, TEXT("Haut, bas : choisir  ·  Gauche, droite : changer  ·  Entrée : lancer la course"), FVector2D(Ecran.X * 0.5, P.Y + Taille.Y - 40), 11, Gris, 0.5, false);
+		return;
+	}
+
+	const FConcurrent* Moi = Course->Joueur();
+	if (!Moi)
+	{
+		return;
+	}
+	if (Course->Etat == EEtatCourse::Depart)
+	{
+		Texte(L, C + 2, G, FString::FromInt(FMath::CeilToInt(Course->Compte - 1.0)), FVector2D(Ecran.X * 0.5, Ecran.Y * 0.26), 90, Or, 0.5);
+	}
+	else if (Course->Etat == EEtatCourse::Course && Course->Chrono < 1.2)
+	{
+		Texte(L, C + 2, G, TEXT("PARTEZ !"), FVector2D(Ecran.X * 0.5, Ecran.Y * 0.26), 70, Or, 0.5);
+	}
+
+	const double LargeurUtile = FMath::Min(Ecran.X, Ecran.Y * 2.1);
+	const double Gauche = (Ecran.X - LargeurUtile) * 0.5 + 34.0;
+	const TArray<const FConcurrent*> Liste = Course->Classement();
+	Boite(L, C, G, FVector2D(Gauche, 24.0), FVector2D(270.0, 214.0), FLinearColor(0.01f, 0.015f, 0.03f, 0.72f), 12.f);
+	Texte(L, C + 1, G, FString::Printf(TEXT("%d / %d"), Course->Rang(), Liste.Num()), FVector2D(Gauche + 20.0, 34.0), 34, Or);
+	Texte(L, C + 1, G, FString::Printf(TEXT("Tour %d / %d"), FMath::Min(Moi->Tours + 1, Course->ToursChoisis), Course->ToursChoisis), FVector2D(Gauche + 20.0, 94.0), 16, Blanc);
+	Texte(L, C + 1, G, Temps(Course->Chrono), FVector2D(Gauche + 20.0, 126.0), 16, Blanc);
+	Texte(L, C + 1, G, FString::Printf(TEXT("Meilleur tour : %s"), *Temps(Course->MeilleurTour)), FVector2D(Gauche + 20.0, 160.0), 11, Gris, 0.0, false);
+	Texte(L, C + 1, G, TEXT("R : revenir sur la piste"), FVector2D(Gauche + 20.0, 186.0), 11, Gris, 0.0, false);
+
+	if (Course->Etat == EEtatCourse::Resultats)
+	{
+		const FVector2D Taille(600, 150.0 + Liste.Num() * 42.0);
+		const FVector2D P = (Ecran - Taille) * 0.5;
+		Boite(L, C + 4, G, P, Taille, FLinearColor(0.02f, 0.03f, 0.05f, 0.94f), 16.f);
+		Texte(L, C + 5, G, Course->Rang() == 1 ? TEXT("VICTOIRE !") : TEXT("ARRIVÉE"), FVector2D(Ecran.X * 0.5, P.Y + 20), 28, Course->Rang() == 1 ? Or : Corail, 0.5);
+		for (int32 I = 0; I < Liste.Num(); I++)
+		{
+			const double Y = P.Y + 82.0 + I * 42.0;
+			const FLinearColor Teinte = Liste[I] == Moi ? Or : Blanc;
+			Texte(L, C + 5, G, FString::Printf(TEXT("%d.  %s"), I + 1, *Liste[I]->Nom), FVector2D(P.X + 60.0, Y), 16, Teinte);
+			Texte(L, C + 5, G, Liste[I]->Arrivee >= 0.0 ? Temps(Liste[I]->Arrivee) : FString(TEXT("en course")), FVector2D(P.X + Taille.X - 60.0, Y), 16, Teinte, 1.0);
+		}
+		Texte(L, C + 5, G, Course->bNouveauRecord ? TEXT("Nouveau record !  ·  Entrée : retour au menu") : TEXT("Entrée : retour au menu"), FVector2D(Ecran.X * 0.5, P.Y + Taille.Y - 40), 12, Gris, 0.5, false);
+	}
+}
+
 int32 SPalmeraHud::OnPaint(const FPaintArgs& Args, const FGeometry& G, const FSlateRect& Rect, FSlateWindowElementList& L, int32 Couche, const FWidgetStyle& Style, bool bActif) const
 {
 	APalmeraJoueur* J = Joueur.Get();
@@ -462,10 +572,12 @@ int32 SPalmeraHud::OnPaint(const FPaintArgs& Args, const FGeometry& G, const FSl
 
 	// Pendant une scène, seuls les bandes et le dialogue restent à l'écran
 	const APalmeraHistoire* Histoire = APalmeraHistoire::Lire(J);
+	const APalmeraLieux* Lieux = APalmeraLieux::Lire(J);
 	const bool bScene = Histoire && Histoire->SceneActive();
+	const bool bDedans = Lieux && Lieux->EstDedans();
 
 	// Mini-carte, en bas à gauche
-	if (!bScene)
+	if (!bScene && !bDedans)
 	{
 		const FVector2D TailleMini(300, 200);
 		const FVector2D HautMini(Gauche, Ecran.Y - TailleMini.Y - 34.0);
@@ -528,6 +640,33 @@ int32 SPalmeraHud::OnPaint(const FPaintArgs& Args, const FGeometry& G, const FSl
 	}
 
 	Recit(L, C + 18, G, Ecran);
+	if (const APalmeraCourse* Course = APalmeraCourse::Lire(J))
+	{
+		AfficherCourse(L, C + 18, G, Ecran, Course);
+	}
+	if (Lieux)
+	{
+		if (!Lieux->Invite.IsEmpty())
+		{
+			Texte(L, C + 20, G, Lieux->Invite, FVector2D(Ecran.X * 0.5, Ecran.Y * 0.74), 15, Or, 0.5);
+		}
+		if (Lieux->TempsBulle > 0.0)
+		{
+			const TArray<FString> Lignes = Couper(Lieux->Bulle, 84);
+			const double Largeur = 980.0;
+			const double Hauteur = 34.0 + Lignes.Num() * 26.0;
+			const FVector2D Coin((Ecran.X - Largeur) * 0.5, Ecran.Y * 0.885 - Hauteur);
+			Boite(L, C + 20, G, Coin, FVector2D(Largeur, Hauteur), FLinearColor(0.01f, 0.015f, 0.03f, 0.8f), 12.f);
+			for (int32 I = 0; I < Lignes.Num(); I++)
+			{
+				Texte(L, C + 21, G, Lignes[I], FVector2D(Coin.X + 26.0, Coin.Y + 16.0 + I * 26.0), 14, Blanc, 0.0, false);
+			}
+		}
+		if (Lieux->Noir > 0.0)
+		{
+			Boite(L, C + 26, G, FVector2D::ZeroVector, Ecran, FLinearColor(0.f, 0.f, 0.f, float(Lieux->Noir)), 0.f);
+		}
+	}
 	if (bMenuOuvert)
 	{
 		if (bJournalOuvert)

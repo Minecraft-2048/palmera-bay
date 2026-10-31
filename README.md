@@ -13,11 +13,17 @@ Il faut Windows 10 ou 11 et une carte graphique avec le lancer de rayons (testé
 
 Le choix des graphismes (Bas, Moyen, Élevé, Épique) se trouve dans le menu, avec Échap.
 
+Le dossier contient aussi **Palmera Racing** : un jeu de course avec les mêmes graphismes, à lancer avec `Palmera Racing.exe`. 4 circuits dans les rues de la ville, 5 pilotes à battre, de 1 à 9 tours, et un record par circuit.
+
 ## L'histoire
 
 Six ans après avoir quitté Palmera Bay, Sam revient pour l'enterrement de Marius, le père de Nina. La police parle d'un accident. Nina n'y croit pas : le gang des Murènes rôde autour de son garage, pour le compte d'un promoteur qui veut raser le front de mer.
 
 Un prologue et 9 chapitres : filatures, course de nuit, infiltration, des choix qui comptent et 3 fins. Les dialogues sont entièrement doublés en français, et 20 cassettes à trouver en ville racontent le passé.
+
+Huit bâtiments s'ouvrent quand on appuie sur E devant leur porte : cinéma, salle d'arcade, pizzeria, musée, salle de sport, mairie, hôtel et bibliothèque. On y croise des habitants qui en savent long sur la ville.
+
+![La salle du Ciné Palmera](docs/cinema.jpg)
 
 ## Commandes
 

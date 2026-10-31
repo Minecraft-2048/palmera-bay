@@ -20,3 +20,4 @@ Build/Windows/*
 !Build/Windows/Application.ico
 !Build/Splash/
 __pycache__/
+Outils/lanceur/*.exe

@@ -16,6 +16,7 @@
 #include "Misc/Parse.h"
 #include "Misc/Paths.h"
 #include "PalmeraConfig.h"
+#include "PalmeraCourse.h"
 #include "Camera/CameraActor.h"
 #include "PalmeraHeros.h"
 #include "PalmeraHistoire.h"
@@ -169,17 +170,19 @@ void APalmeraJoueur::AppliquerQualite(int32 Niveau)
 
 void APalmeraJoueur::CommandesMenu()
 {
+	const bool bCourse = APalmeraCourse::Lire(this) != nullptr;
+	const int32 NombreChoix = bCourse ? 3 : SPalmeraHud::NombreChoix();
 	if (Appui(EKeys::Up, EKeys::Gamepad_DPad_Up) || Appui(EKeys::Z, EKeys::W))
 	{
-		Hud->ChoixMenu = (Hud->ChoixMenu + SPalmeraHud::NombreChoix() - 1) % SPalmeraHud::NombreChoix();
+		Hud->ChoixMenu = (Hud->ChoixMenu + NombreChoix - 1) % NombreChoix;
 	}
 	if (Appui(EKeys::Down, EKeys::Gamepad_DPad_Down) || Appui(EKeys::S))
 	{
-		Hud->ChoixMenu = (Hud->ChoixMenu + 1) % SPalmeraHud::NombreChoix();
+		Hud->ChoixMenu = (Hud->ChoixMenu + 1) % NombreChoix;
 	}
 	if (Appui(EKeys::Enter, EKeys::Gamepad_FaceButton_Bottom) || Appui(EKeys::SpaceBar))
 	{
-		switch (Hud->ChoixMenu)
+		switch (bCourse && Hud->ChoixMenu == 2 ? 5 : Hud->ChoixMenu)
 		{
 		case 0:
 			BasculerMenu();
@@ -566,14 +569,14 @@ void APalmeraJoueur::CommandesAuVolant(float Dt)
 	Gaz += GetInputAnalogKeyState(EKeys::Gamepad_RightTriggerAxis) - GetInputAnalogKeyState(EKeys::Gamepad_LeftTriggerAxis);
 	Volant += GetInputAnalogKeyState(EKeys::Gamepad_LeftX);
 	const bool bFrein = Touche(EKeys::SpaceBar, EKeys::Gamepad_FaceButton_Bottom);
-	Voiture->Commander(Gaz, Volant, bFrein);
+	Voiture->Commander(bCommandesGelees ? 0.0 : Gaz, bCommandesGelees ? 0.0 : Volant, bFrein || bCommandesGelees);
 
 	// Regard libre autour de la voiture
 	float Dx = 0.f, Dy = 0.f;
 	GetInputMouseDelta(Dx, Dy);
 	Voiture->TournerCamera(Dx * 2.4 + GetInputAnalogKeyState(EKeys::Gamepad_RightX) * 150.0 * Dt, Dy * 2.4 + GetInputAnalogKeyState(EKeys::Gamepad_RightY) * 110.0 * Dt);
 
-	if (Appui(EKeys::F, EKeys::Gamepad_FaceButton_Top))
+	if (Heros && Appui(EKeys::F, EKeys::Gamepad_FaceButton_Top))
 	{
 		Descendre();
 		return;
@@ -600,6 +603,23 @@ void APalmeraJoueur::CommandesAuVolant(float Dt)
 	if (Appui(EKeys::R) && Voiture->EstRetournee())
 	{
 		Voiture->Redresser();
+	}
+}
+
+void APalmeraJoueur::PrendreVoiture(APalmeraVoiture* NouvelleVoiture)
+{
+	Voiture = NouvelleVoiture;
+	Voiture->bCibleJoueur = true;
+	Voiture->ActiverCamera(true);
+	Possess(Voiture);
+}
+
+void APalmeraJoueur::LacherVoiture()
+{
+	if (Voiture)
+	{
+		UnPossess();
+		Voiture = nullptr;
 	}
 }
 

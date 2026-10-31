@@ -12,6 +12,7 @@
 #include "GameFramework/PlayerController.h"
 #include "Materials/MaterialInterface.h"
 #include "PalmeraConfig.h"
+#include "PalmeraLieux.h"
 #include "PalmeraMonde.h"
 #include "PalmeraPartie.h"
 
@@ -332,9 +333,14 @@ void APalmeraVille::ConstruireBloc(int32 I, int32 J)
 					}
 					continue;
 				}
-				const TCHAR* Nom = Prendre(H, { TEXT("SM_bureaux_a"), TEXT("SM_brique_a"), TEXT("SM_brique_b"), TEXT("SM_brique_c"), TEXT("SM_residence_a"),
-					TEXT("SM_residence_c"), TEXT("SM_boutiques_a"), TEXT("SM_boutiques_b"), TEXT("SM_boutiques_c"), TEXT("SM_boutiques_d") });
-				PoserBatiment(Nom, X, Y, H.RandRange(0, 3) * 90.0, H);
+				if (const FSalle* Salle = APalmeraLieux::SalleDuLot(I, J, A, B))
+					{
+						PoserBatiment(TEXT("SM_lieu_") + Salle->Id, X, Y, Salle->Lacet, H);
+						continue;
+					}
+					const TCHAR* Nom = Prendre(H, { TEXT("SM_bureaux_a"), TEXT("SM_brique_a"), TEXT("SM_brique_b"), TEXT("SM_brique_c"), TEXT("SM_residence_a"),
+						TEXT("SM_residence_b"), TEXT("SM_residence_c"), TEXT("SM_bureaux_b"), TEXT("SM_boutiques_a"), TEXT("SM_boutiques_c") });
+					PoserBatiment(Nom, X, Y, H.RandRange(0, 3) * 90.0, H);
 			}
 		}
 	}
@@ -534,6 +540,23 @@ void APalmeraVille::ConstruireRues(){
 		Enseigne->SetVerticalAlignment(EVRTA_TextCenter);
 		Enseigne->SetWorldSize(190.0f);
 		Enseigne->SetCastShadow(true);
+		Enseigne->RegisterComponent();
+	}
+
+	// Le nom de chaque lieu où l'on peut entrer, au-dessus de sa porte
+	for (const FSalle& Salle : APalmeraLieux::Salles())
+	{
+		const FVector Face = Salle.Facade();
+		const FVector2D Centre = Salle.CentreLot() + FVector2D(Face.X, Face.Y) * (Salle.Recul + 0.4);
+		UTextRenderComponent* Enseigne = NewObject<UTextRenderComponent>(this);
+		Enseigne->SetMobility(EComponentMobility::Static);
+		Enseigne->SetupAttachment(RootComponent);
+		Enseigne->SetWorldLocationAndRotation(EnMetres(Centre.X, Centre.Y, NiveauTrottoir + 5.4), FRotator(0.0, Face.Rotation().Yaw, 0.0));
+		Enseigne->SetText(FText::FromString(Salle.Enseigne));
+		Enseigne->SetTextRenderColor(Salle.Couleur.ToFColorSRGB());
+		Enseigne->SetHorizontalAlignment(EHTA_Center);
+		Enseigne->SetVerticalAlignment(EVRTA_TextCenter);
+		Enseigne->SetWorldSize(170.0f);
 		Enseigne->RegisterComponent();
 	}
 

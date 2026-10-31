@@ -192,10 +192,10 @@ void APalmeraVoiture::Configurer(const FFicheVoiture& NouvelleFiche)
 
 	// Les voitures de tous les jours nomment leur peinture ; celles du moteur ont un numéro
 	const int32 ParNom = Carrosserie->GetMaterialIndex(TEXT("peinture"));
-	const int32 Emplacement = ParNom != INDEX_NONE ? ParNom : Fiche.IndexPeinture;
-	if (UMaterialInterface* Mat = Carrosserie->GetMaterial(Emplacement))
+	const int32 SlotPeinture = ParNom != INDEX_NONE ? ParNom : Fiche.IndexPeinture;
+	if (UMaterialInterface* Mat = Carrosserie->GetMaterial(SlotPeinture))
 	{
-		MatCaisse = Carrosserie->CreateDynamicMaterialInstance(Emplacement, Mat);
+		MatCaisse = Carrosserie->CreateDynamicMaterialInstance(SlotPeinture, Mat);
 		if (MatCaisse)
 		{
 			MatCaisse->SetVectorParameterValue(TEXT("Paint Tint"), Fiche.Peinture);
@@ -399,6 +399,14 @@ void APalmeraVoiture::NotifyHit(UPrimitiveComponent* MaPiece, AActor* Autre, UPr
 	}
 }
 
+double APalmeraVoiture::BraquageMax() const
+{
+	const double V = GetVelocity().Size() / 100.0;
+	const double LongueurAxes = Fiche.Empattement * 2.0 / 100.0;
+	const double AngleTenu = FMath::RadiansToDegrees(FMath::Atan(LongueurAxes * Fiche.Adherence * 9.81 * 0.95 / FMath::Max(V * V, 1.0))) + 1.2;
+	return FMath::Min(36.0, AngleTenu);
+}
+
 void APalmeraVoiture::SimulerRoues(double Dt)
 {
 	const FTransform T = Boite->GetComponentTransform();
@@ -412,9 +420,7 @@ void APalmeraVoiture::SimulerRoues(double Dt)
 
 	// Le volant ne braque pas plus que ce que les pneus peuvent tenir à cette vitesse : seul le frein à main fait décrocher
 	Volant = FMath::FInterpTo(Volant, ConsigneVolant, Dt, ConsigneVolant == 0.0 ? 9.0 : 6.0);
-	const double LongueurAxes = Fiche.Empattement * 2.0 / 100.0;
-	const double AngleTenu = FMath::RadiansToDegrees(FMath::Atan(LongueurAxes * Fiche.Adherence * 9.81 * 0.95 / FMath::Max(VAbs * VAbs, 1.0))) + 1.2;
-	const double AngleMax = bConsigneFrein ? FMath::Lerp(36.0, 6.5, FMath::Clamp(VAbs / 62.0, 0.0, 1.0)) : FMath::Min(36.0, AngleTenu);
+	const double AngleMax = bConsigneFrein ? FMath::Lerp(36.0, 6.5, FMath::Clamp(VAbs / 62.0, 0.0, 1.0)) : BraquageMax();
 	const double Angle = FMath::DegreesToRadians(Volant * AngleMax);
 
 	// Moteur : force plafonnée à bas régime, puissance constante ensuite
